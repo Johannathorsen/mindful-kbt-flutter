@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mindful_kbt_flutter/createAppBar.dart';
 import 'package:mindful_kbt_flutter/createDrawer.dart';
 
 class Litteratur extends StatelessWidget {
@@ -7,7 +8,7 @@ class Litteratur extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: createAppBar(),
       drawer: createDrawer(context),
       body: Center(
         child: TextButton(

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mindful_kbt_flutter/createAppBar.dart';
+import 'package:mindful_kbt_flutter/views/Start.dart';
 import 'package:mindful_kbt_flutter/views/KBT.dart';
 import 'package:mindful_kbt_flutter/views/Mindfulness.dart';
 import 'package:mindful_kbt_flutter/views/Litteratur.dart';
@@ -19,9 +21,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.lightBlue,
       ),
-      initialRoute: '/',
+      initialRoute: Start.routeName,
       routes: {
-        '/': (context) => StartPage(title: 'Mindful KBT'),
+        Start.routeName: (context) => Start(),
         KBT.routeName: (context) => KBT(),
         Mindfulness.routeName: (context) => Mindfulness(),
         Ljudfiler.routeName: (context) => Ljudfiler(),
@@ -53,11 +55,7 @@ class _StartPageState extends State<StartPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the StartPage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
+      appBar: createAppBar(),
       drawer: createDrawer(context),
       body: Center(
         child: Column(
