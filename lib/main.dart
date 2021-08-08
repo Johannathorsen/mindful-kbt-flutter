@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mindful_kbt_flutter/views/KBT.dart';
+import 'package:mindful_kbt_flutter/views/Mindfulness.dart';
+import 'package:mindful_kbt_flutter/views/Litteratur.dart';
+import 'package:mindful_kbt_flutter/views/Ljudfiler.dart';
+import 'package:mindful_kbt_flutter/views/Kontakt.dart';
+import 'package:mindful_kbt_flutter/createDrawer.dart';
 
 void main() {
   runApp(MyApp());
@@ -8,25 +14,34 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.lightBlue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => StartPage(title: 'Mindful KBT'),
+        KBT.routeName: (context) => KBT(),
+        Mindfulness.routeName: (context) => Mindfulness(),
+        Ljudfiler.routeName: (context) => Ljudfiler(),
+        Litteratur.routeName: (context) => Litteratur(),
+        Kontakt.routeName: (context) => Kontakt(),
+      },
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+class StartPage extends StatefulWidget {
+  StartPage({Key? key, required this.title}) : super(key: key);
   // Fields in a Widget subclass are always marked "final".
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _StartPageState createState() => _StartPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _StartPageState extends State<StartPage> {
   int _counter = 0;
 
   void _incrementCounter() {
@@ -39,10 +54,11 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
+        // Here we take the value from the StartPage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
+      drawer: createDrawer(context),
       body: Center(
         child: Column(
           // Invoke "debug painting" (press "p" in the console, choose the
